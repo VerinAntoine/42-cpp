@@ -1,4 +1,7 @@
 .idea/
+.vscode/
 obj/
 
+*test*
+prg
 megaphone
