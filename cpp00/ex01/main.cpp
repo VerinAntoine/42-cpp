@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-bool is_equals(std::string &a, std::string b)
+static bool is_equals(std::string &a, std::string b)
 {
 	if (a.size() != b.size())
 		return false;
@@ -14,10 +14,41 @@ bool is_equals(std::string &a, std::string b)
 	return true;
 }
 
+static bool is_valid(const std::string &str)
+{
+	if (str.empty())
+	{
+		std::cerr << "Input cannot be empty!" << std::endl;
+		return false;
+	}
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (!isalnum(str[i]))
+		{
+			std::cerr << "Input should be alnum only!" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+static std::string get_input(const std::string &name)
+{
+	std::string str;
+	do {
+		if (std::cin.eof())
+			break;
+		std::cout << name << ": ";
+		getline(std::cin, str);
+	} while (!is_valid(str));
+	return str;
+}
+
 int main(int argc, char *argv[])
 {
-    (void) argc;
-    (void) argv;
+	(void) argc;
+	(void) argv;
 
 	Phonebook phonebook = Phonebook();
 	int count = 0;
@@ -27,22 +58,13 @@ int main(int argc, char *argv[])
 		getline(std::cin, input);
 		if (is_equals(input, "add"))
 		{
-			std::string first_name;
-			std::string last_name;
-			std::string nickname;
-			std::string phone;
-			std::string secret;
-			std::cout << "first name: ";
-			getline(std::cin, first_name);
-			std::cout << "last name: ";
-			getline(std::cin, last_name);
-			std::cout << "nickname: ";
-			getline(std::cin, nickname);
-			std::cout << "phone: ";
-			getline(std::cin, phone);
-			std::cout << "secret: ";
-			getline(std::cin, secret);
-			phonebook.setContact(new Contact(first_name, last_name, nickname, phone, secret), count++);
+			phonebook.setContact(new Contact(
+				get_input("first name"),
+				get_input("last name"),
+				get_input("nickname"),
+				get_input("phone"),
+				get_input("secret")
+			), count++);
 			if (count >= 8)
 				count = 0;
 		}
@@ -61,5 +83,5 @@ int main(int argc, char *argv[])
 	} while (!(is_equals(input, "exit") || std::cin.eof()));
 	if (std::cin.eof())
 			std::cout << std::endl;
-    return 0;
+	return 0;
 }

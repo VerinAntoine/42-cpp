@@ -28,7 +28,7 @@ static void print_field(std::string field)
 	if (field.size() > 10)
 		std::cout << field.substr(0, 9) << ".";
 	else
-		std::cout << std::setw(10) << std::left << field;
+		std::cout << std::setw(10) << field;
 }
 
 void Phonebook::print()
