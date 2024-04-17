@@ -19,6 +19,10 @@ int main(int argc, char const *argv[])
 	if (!ifile.is_open() || !ofile.is_open())
 	{
 		std::cerr << "Couldn't open file " << argv[1] << std::endl;
+		if (ifile.is_open())
+			ifile.close();
+		if (ofile.is_open())
+			ofile.close();
 		return 2;
 	}
 
@@ -34,5 +38,7 @@ int main(int argc, char const *argv[])
 		}
 		ofile << content << std::endl;
 	}
+	ifile.close();
+	ofile.close();
 	return 0;
 }
