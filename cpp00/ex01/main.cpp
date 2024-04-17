@@ -41,7 +41,7 @@ static std::string get_input(const std::string &name)
 			break;
 		std::cout << name << ": ";
 		getline(std::cin, str);
-	} while (!is_valid(str));
+	} while (!std::cin.eof() && !is_valid(str));
 	return str;
 }
 
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 			std::cout << "index: ";
 			getline(std::cin, index);
 			int ind = atoi(index.c_str());
-			if (ind < 1 || ind > 8 || phonebook.getContact(ind - 1) == NULL)
+			if (ind < 1 || ind > 8 || phonebook.getContact(ind - 1) == NULL || index.size() != 1)
 				std::cerr << "Could'nt find contact" << std::endl;
 			else
 				phonebook.getContact(ind - 1)->print();
