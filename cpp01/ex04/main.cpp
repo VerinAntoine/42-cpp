@@ -15,20 +15,21 @@ int main(int argc, char const *argv[])
 	std::string content;
 
 	std::ifstream ifile(filename.c_str());
-	std::ofstream ofile(filename.append(".replace").c_str());
-	if (!ifile.is_open() || !ofile.is_open())
+	if (!ifile.is_open())
 	{
-		std::cerr << "Couldn't open file " << argv[1] << std::endl;
-		if (ifile.is_open())
-			ifile.close();
-		if (ofile.is_open())
-			ofile.close();
+		std::cerr << "Couldn't open file " << filename << std::endl;
+		return 2;
+	}
+	std::ofstream ofile(filename.append(".replace").c_str());
+	if (!ofile.is_open())
+	{
+		std::cerr << "Couldn't open replaced file " << filename << std::endl;
+		ifile.close();
 		return 2;
 	}
 
 	while (std::getline(ifile, content))
 	{
-
 		size_t index = content.find(s1);
 		while (index != std::string::npos)
 		{
