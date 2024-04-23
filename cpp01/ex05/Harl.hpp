@@ -9,7 +9,10 @@ class Harl
 {
 
 private:
-	std::map<std::string, void (Harl::*)()> levels;
+	struct {
+		std::string name;
+		void (Harl::*f)();
+	} levels[4];
 
 	void debug(void);
 	void info(void);

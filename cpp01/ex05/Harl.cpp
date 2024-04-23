@@ -2,10 +2,10 @@
 
 Harl::Harl()
 {
-	levels["debug"] = &Harl::debug;
-	levels["info"] = &Harl::info;
-	levels["warning"] = &Harl::warning;
-	levels["error"] = &Harl::error;
+	levels[0] = { "debug", &Harl::debug };
+	levels[1] = { "info", &Harl::info };
+	levels[2] = { "warning", &Harl::warning };
+	levels[3] = { "error", &Harl::error };
 }
 
 void Harl::debug(void)
@@ -30,6 +30,9 @@ void Harl::error(void)
 
 void Harl::complain(std::string level)
 {
-	if (levels.find(level) != levels.end())
-		(this->*levels[level])();
+	for (int i = 0; i < 4; i++)
+	{
+		if (levels[i].name.compare(level) == 0)
+			(this->*levels[i].f)();
+	}
 }
