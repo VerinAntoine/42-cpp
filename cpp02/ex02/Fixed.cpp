@@ -131,7 +131,7 @@ Fixed Fixed::operator--(int value)
 {
 	Fixed obj = *this;
 	this->value -= value;
-	return *this;
+	return obj;
 }
 
 Fixed &Fixed::min(Fixed &a, Fixed &b)
