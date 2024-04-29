@@ -2,10 +2,14 @@
 
 Harl::Harl()
 {
-	levels[0] = { "debug", &Harl::debug };
-	levels[1] = { "info", &Harl::info };
-	levels[2] = { "warning", &Harl::warning };
-	levels[3] = { "error", &Harl::error };
+	levels[0].name = "debug";
+	levels[0].f = &Harl::debug;
+	levels[1].name = "info";
+	levels[1].f = &Harl::info;
+	levels[2].name = "warning";
+	levels[2].f = &Harl::warning;
+	levels[3].name = "error";
+	levels[3].f = &Harl::error;
 }
 
 void Harl::debug(void)
