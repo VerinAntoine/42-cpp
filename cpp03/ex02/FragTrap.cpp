@@ -10,6 +10,7 @@ FragTrap::FragTrap(const std::string &name): ClapTrap(name)
 
 FragTrap::FragTrap(const FragTrap &other): ClapTrap(other.name)
 {
+	std::cout << "FragTrap " << name << " has been copied!" << std::endl;
 	*this = other;
 }
 

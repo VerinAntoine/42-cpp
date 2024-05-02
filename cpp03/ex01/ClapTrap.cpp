@@ -10,8 +10,8 @@ ClapTrap::ClapTrap(const std::string &name): name(name)
 
 ClapTrap::ClapTrap(const ClapTrap &other)
 {
-	*this = other;
 	std::cout << "ClapTrap " << name << " has been copied!" << std::endl;
+	*this = other;
 }
 
 ClapTrap::~ClapTrap()

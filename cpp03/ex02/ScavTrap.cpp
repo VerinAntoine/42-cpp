@@ -10,6 +10,7 @@ ScavTrap::ScavTrap(const std::string &name): ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap &other): ClapTrap(other.name)
 {
+	std::cout << "ScavTrap " << name << " has been copied!" << std::endl;
 	*this = other;
 }
 
