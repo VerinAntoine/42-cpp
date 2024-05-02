@@ -9,6 +9,8 @@ Dog::Dog(): Animal()
 
 Dog::Dog(const Dog& other): Animal()
 {
+	this->type = "Dog";
+	this->brain = new Brain();
 	*this = other;
 	std::cout << "Dog copied" << std::endl;
 }
@@ -28,6 +30,7 @@ Dog &Dog::operator=(const Dog& other)
 {
 	if (this == &other)
 		return *this;
-	this->brain = other.brain;
+	delete this->brain;
+	this->brain = new Brain(*other.brain);
 	return *this;
 }
