@@ -8,7 +8,7 @@ FragTrap::FragTrap(const std::string &name): ClapTrap(name)
 	std::cout << "FragTrap " << name << " has been created!" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other): ClapTrap(name)
+FragTrap::FragTrap(const FragTrap &other): ClapTrap(other.name)
 {
 	*this = other;
 }
