@@ -18,6 +18,7 @@ public:
 	void makeSound();
 
 	Dog &operator=(const Dog &other);
+	Dog &operator=(const Animal &other);
 
 };
 

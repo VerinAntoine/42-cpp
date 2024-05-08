@@ -18,6 +18,7 @@ public:
 	void makeSound();
 
 	Cat &operator=(const Cat &other);
+	Cat &operator=(const Animal &other);
 
 };
 

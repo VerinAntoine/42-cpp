@@ -1,4 +1,5 @@
 #include "Dog.hpp"
+#include <typeinfo>
 
 Dog::Dog(): Animal()
 {
@@ -32,5 +33,12 @@ Dog &Dog::operator=(const Dog& other)
 		return *this;
 	delete this->brain;
 	this->brain = new Brain(*other.brain);
+	return *this;
+}
+
+Dog &Dog::operator=(const Animal &other)
+{
+	if (typeid(*this) == typeid(other))
+		return Dog::operator=((Dog &) other);
 	return *this;
 }

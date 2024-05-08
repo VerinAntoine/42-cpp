@@ -19,7 +19,7 @@ public:
 
 	std::string getType() const;
 
-	Animal &operator=(const Animal &other);
+	virtual Animal &operator=(const Animal &other);
 
 };
 

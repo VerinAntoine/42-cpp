@@ -24,7 +24,8 @@ std::string Animal::getType() const
 	return this->type;
 }
 
-Animal &Animal::operator=(const Animal &other) {
+Animal &Animal::operator=(const Animal &other)
+{
 	(void) other;
 	return *this;
 }
