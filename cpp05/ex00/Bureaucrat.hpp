@@ -24,11 +24,17 @@ public:
 
 	Bureaucrat &operator=(const Bureaucrat &other);
 
-	class GradeTooHighException
-	{ };
+	class GradeTooHighException: public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
 
-	class GradeTooLowException
-	{ };
+	class GradeTooLowException: public std::exception
+	{
+	public:
+		virtual const char *what() const throw();
+	};
 
 };
 
