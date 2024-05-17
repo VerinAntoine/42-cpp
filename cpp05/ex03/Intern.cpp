@@ -42,12 +42,16 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target)
 		if (forms[i].name == name)
 			return (this->*forms[i].f)(target);
 	}
-	std::cout << "Unknown form " << name << std::endl;
-	return NULL;
+	throw UnknownFormException();
 }
 
 Intern &Intern::operator=(const Intern &other)
 {
 	(void) other;
 	return *this;
+}
+
+const char *Intern::UnknownFormException::what() const throw()
+{
+	return "Unknown form ";
 }

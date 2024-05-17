@@ -27,6 +27,10 @@ public:
 
 	Intern &operator=(const Intern &other);
 
+	class UnknownFormException: public std::exception {
+		virtual const char *what() const throw();
+	};
+
 };
 
 #endif

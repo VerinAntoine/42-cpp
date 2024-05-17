@@ -21,5 +21,13 @@ int main()
 	f = i.makeForm("ShrubberyCreationForm", "moch");
 	f->execute(b);
 	delete f;
-	f = i.makeForm("nop", "nop");	
+	try
+	{
+		i.makeForm("nop", "nop");
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+		
 }
