@@ -1,0 +1,26 @@
+#include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
+
+int main()
+{
+	Bureaucrat bob("Bob", 1);
+	{
+		AForm *f = new ShrubberyCreationForm("bob");
+		f->execute(bob);
+		delete f;
+	}
+	{
+		AForm *f = new RobotomyRequestForm("mich");
+		f->execute(bob);
+		delete f;
+	}
+	{
+		AForm *f = new PresidentialPardonForm("much");
+		f->execute(bob);
+		delete f;
+	}
+}
