@@ -7,6 +7,17 @@
 
 int main()
 {
+	{
+		Bureaucrat mich("Mich", 130);
+		PresidentialPardonForm form("Jean");
+		mich.executeForm(form);
+	}
+	{
+		Bureaucrat mich("Moch", 1);
+		PresidentialPardonForm form("Jeanne");
+		mich.executeForm(form);
+	}
+
 	Bureaucrat bob("Bob", 1);
 	{
 		AForm *f = new ShrubberyCreationForm("bob");
