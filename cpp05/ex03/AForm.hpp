@@ -12,10 +12,10 @@ class AForm
 {
 
 private:
-	std::string name;
+	const std::string name;
 	bool signd;
-	int signGrade;
-	int execGrade;
+	const int signGrade;
+	const int execGrade;
 
 protected:
 	virtual void do_execute(const Bureaucrat &bureaucrat) const = 0;

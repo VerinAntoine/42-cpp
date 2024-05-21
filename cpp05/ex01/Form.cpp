@@ -10,6 +10,7 @@ Form::Form(const std::string &name, int signGrade, int execGrade)
 }
 
 Form::Form(const Form &other)
+: name(other.name), signGrade(other.signGrade), execGrade(other.execGrade)
 {
 	*this = other;
 }
@@ -45,10 +46,7 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
 
 Form &Form::operator=(const Form &other)
 {
-	this->name = other.name;
 	this->signd = other.signd;
-	this->signGrade = other.signGrade;
-	this->execGrade = other.execGrade;
 	return *this;
 }
 

@@ -12,10 +12,10 @@ class Form
 {
 
 private:
-	std::string name;
+	const std::string name;
 	bool signd;
-	int signGrade;
-	int execGrade;
+	const int signGrade;
+	const int execGrade;
 
 public:
 	Form(const std::string &name, int signGrade, int execGrade);

@@ -10,13 +10,9 @@ void do_form(const std::string &name, int sign, int exec)
 		Form a(name, sign, exec);
 		std::cout << a;
 	}
-	catch(const Form::GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << "grade too high" << std::endl;
-	}
-	catch(const Form::GradeTooLowException& e)
-	{
-		std::cout << "grade too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 }
 

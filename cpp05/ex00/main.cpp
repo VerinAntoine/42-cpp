@@ -8,13 +8,9 @@ int main()
 		Bureaucrat a("Jean", 0);
 		(void) a;
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << "grade too high" << std::endl;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cout << "grade too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try
@@ -22,13 +18,9 @@ int main()
 		Bureaucrat a("Patrick", 151);
 		(void) a;
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << "grade too high" << std::endl;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cout << "grade too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try
@@ -40,13 +32,9 @@ int main()
 		a.incrementGrade();
 		std::cout << a;
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << "grade too high" << std::endl;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cout << "grade too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	try
@@ -58,12 +46,8 @@ int main()
 		a.decrementGrade();
 		std::cout << a;
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << "grade too high" << std::endl;
-	}
-	catch(const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cout << "grade too low" << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 }

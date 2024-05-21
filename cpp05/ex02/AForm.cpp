@@ -10,6 +10,7 @@ AForm::AForm(const std::string &name, int signGrade, int execGrade)
 }
 
 AForm::AForm(const AForm &other)
+: name(other.name), signGrade(other.signGrade), execGrade(other.execGrade)
 {
 	*this = other;
 }
@@ -52,10 +53,7 @@ void AForm::execute(const Bureaucrat &bureaucrat) const
 
 AForm &AForm::operator=(const AForm &other)
 {
-	this->name = other.name;
 	this->signd = other.signd;
-	this->signGrade = other.signGrade;
-	this->execGrade = other.execGrade;
 	return *this;
 }
 

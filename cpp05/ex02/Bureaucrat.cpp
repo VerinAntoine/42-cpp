@@ -11,6 +11,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade)
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other)
+: name(other.name)
 {
 	*this = other;
 }
@@ -72,7 +73,6 @@ void Bureaucrat::executeForm(const AForm &form)
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-	this->name = other.name;
 	this->grade = other.grade;
 	return *this;
 }
