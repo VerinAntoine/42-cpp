@@ -31,7 +31,7 @@ void Character::equip(AMateria *m)
 	{
 		if (slots[i] == NULL)
 		{
-			slots[i] = m;
+			slots[i] = m->clone();
 			return ;
 		}
 	}
