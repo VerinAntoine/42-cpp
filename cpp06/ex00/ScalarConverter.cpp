@@ -132,10 +132,10 @@ static void fromInt(const std::string &literal)
 	}
 
 	char *end;
-	int i = strtol(literal.c_str(), &end, 10);
-	if (*end != 0)
+	long i = strtol(literal.c_str(), &end, 10);
+	if (*end != 0 || i > 2147483647 || i < -2147483648 || literal.size() > 11)
 		return ;
-	convert(i);
+	convert((int) i);
 }
 
 static void fromFloat(const std::string &literal)
