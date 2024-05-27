@@ -18,7 +18,7 @@ public:
 	int size() const;
 
 	Array &operator=(const Array &other);
-	T&operator[](int i) const;
+	T &operator[](int i) const;
 
 };
 
