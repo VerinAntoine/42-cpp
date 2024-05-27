@@ -4,7 +4,10 @@
 int main(int argc, char const *argv[])
 {
 	if (argc != 2)
+	{
 		std::cout << argv[0] << " <literal>" << std::endl;
+		return 0;
+	}
 	ScalarConverter::convert(argv[1]);
 
 	// ScalarConverter a;

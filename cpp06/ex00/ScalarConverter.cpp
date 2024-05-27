@@ -166,7 +166,8 @@ static void fromDouble(const std::string &literal)
 
 static void fromPseudo(const std::string &literal)
 {
-	if (!(literal == "-inff" || literal == "+inff" || literal == "-inf" || literal == "+inf" || literal == "nan"))
+	if (!(literal == "-inff" || literal == "+inff" || literal == "-inf"
+			|| literal == "+inf" || literal == "nan" || literal == "nanf"))
 		return ;
 	convertPseudo(literal);
 }
@@ -179,3 +180,7 @@ void ScalarConverter::convert(const std::string &literal)
 	fromDouble(literal);
 	fromPseudo(literal);
 }
+
+ScalarConverter::~ScalarConverter() { }
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) { }
