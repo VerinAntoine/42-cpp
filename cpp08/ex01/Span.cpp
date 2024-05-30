@@ -51,8 +51,8 @@ int Span::longestSpan() const
 
 void Span::fill() {
 	content.resize(length);
-    std::srand((unsigned) time(NULL));
-    std::generate(content.begin(), content.end(), std::rand);
+	std::srand((unsigned) time(NULL));
+	std::generate(content.begin(), content.end(), std::rand);
 }
 
 Span &Span::operator=(const Span &other)
