@@ -1,5 +1,6 @@
 #include "Span.hpp"
 #include <algorithm>
+#include <numeric>
 #include <cstdlib>
 #include <iostream>
 
@@ -27,18 +28,10 @@ void Span::addNumber(int n)
 
 int Span::shortestSpan() const
 {
-	std::cout << content.size() << std::endl;
-	if (content.size() < 2)
-		throw EmptyException();
-	
-	int shortest = -1;
-	for (std::vector<int>::const_iterator i = content.begin() + 1; i != content.end(); i++)
-	{
-		int s = std::abs(*(i - 1) - *i);
-		if (s < shortest || shortest == -1)
-			shortest = s;
-	}
-	return shortest;
+	std::vector<int> copy(content);
+	std::sort(copy.begin(), copy.end());
+	std::adjacent_difference(copy.begin(), copy.end(), copy.begin());
+	return *std::min_element(copy.begin(), copy.end());
 }
 
 int Span::longestSpan() const
