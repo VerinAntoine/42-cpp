@@ -13,7 +13,7 @@ public:
 template<typename T>
 void easyfind(T &container, int n)
 {
-	if(*(std::find(container.begin(), container.end(), n)) != n)
+	if(std::find(container.begin(), container.end(), n) == container.end())
 		throw NotFoundException();
 	else
 		std::cout << "found!" << std::endl;
