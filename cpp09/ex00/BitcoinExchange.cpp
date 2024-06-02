@@ -26,6 +26,41 @@ static void trim(std::string& str)
 	str.erase(0, str.find_first_not_of(SPACES));
 }
 
+static bool isInMonth(int year, int month, int day)
+{
+	switch (month)
+	{
+		case 1:
+			return day <= 31;
+		case 2:
+			if (year % 4 == 0 && year % 100 != 0)
+				return day <= 29;
+			return day <= 28;
+		case 3:
+			return day <= 31;
+		case 4:
+			return day <= 30;
+		case 5:
+			return day <= 31;
+		case 6:
+			return day <= 30;
+		case 7:
+			return day <= 31;
+		case 8:
+			return day <= 31;
+		case 9:
+			return day <= 30;
+		case 10:
+			return day <= 31;
+		case 11:
+			return day <= 30;
+		case 12:
+			return day <= 31;
+		default:
+			return false;
+	}
+}
+
 static bool verifyDate(std::string date)
 {
 	size_t cp = date.find('-');
@@ -42,7 +77,7 @@ static bool verifyDate(std::string date)
 		return false;
 	date = date.erase(0, cp + 1);
 	long day = std::strtol(date.c_str(), &end, 10);
-	if (*end != 0 || day < 0 || day > 31)
+	if (*end != 0 || day < 0 || !isInMonth(year, month, day))
 		return false;
 	return true;
 }
