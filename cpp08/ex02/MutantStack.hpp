@@ -4,11 +4,12 @@
 # include <stack>
 
 template<typename T, typename Container = std::deque<T> >
-class MutantStack: public std::stack<T>
+class MutantStack: public std::stack<T, Container>
 {
 
 public:
 	MutantStack() { };
+	MutantStack(Container container): std::stack<T, Container>(container) { }
 	MutantStack(const MutantStack &other)
 	{
 		*this = other;

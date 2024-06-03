@@ -24,13 +24,13 @@ public:
 
 	Span &operator=(const Span &other);
 
-	class FullException
+	class FullException: public std::exception
 	{
 	public:
 		virtual const char *what() const throw();
 	};
 
-	class EmptyException
+	class EmptyException: public std::exception
 	{
 	public:
 		virtual const char *what() const throw();

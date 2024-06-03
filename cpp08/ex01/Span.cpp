@@ -28,6 +28,9 @@ void Span::addNumber(int n)
 
 int Span::shortestSpan() const
 {
+	if (content.size() < 2)
+		throw EmptyException();
+
 	std::vector<int> copy(content);
 	std::sort(copy.begin(), copy.end());
 	std::adjacent_difference(copy.begin(), copy.end(), copy.begin());
