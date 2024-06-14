@@ -23,20 +23,58 @@ void PmergeMe::sort(std::vector<int> v)
 	bool isOdd = v.size() % 2;
 	size_t mid = v.size() / 2;
 
-	std::vector<std::pair<int, int> > tuples;
+	std::vector<std::pair<int, int> > pairs;
 	for (size_t i = 0; i < mid; i++)
-		tuples.push_back(std::pair<int, int>(v[i], v[i + mid]));
+		pairs.push_back(std::pair<int, int>(v[i], v[i + mid]));
+
 	std::cout << "isodd " << isOdd << std::endl;
+	std::pair<int, int> odd;
 	if (isOdd)
-		tuples.push_back(std::pair<int, int>(v[v.size() - 1], 0));
-	
-	for (std::vector<std::pair<int, int> >::iterator it = tuples.begin()
-		; it != tuples.end(); it++)
 	{
-		if (it->first > it->second) //! check with last one when odd
+		odd.first = v[v.size() - 1];
+		odd.second = -1;
+	}
+	v.clear();
+
+	//!
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
+
+	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin()
+		; it != pairs.end(); it++)
+	{
+		if (it->first > it->second)
 			std::swap(it->first, it->second);
 	}
 
-	for (size_t i = 0; i < tuples.size(); i++)
-		std::cout << tuples[i].first << " " << tuples[i].second << std::endl;
+	//!
+	std::cout << std::endl;
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
+
+	merge(pairs);
+
+	//!
+	std::cout << std::endl;
+	for (size_t i = 0; i < pairs.size(); i++)
+		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
+
+	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin()
+		; it != pairs.end(); it++)
+	{
+		if (it == pairs.begin())
+			v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	
+	if (isOdd)
+		pairs.push_back(odd);
+
+	//!
+	std::cout << std::endl;
+	for (size_t i = 0; i < v.size(); i++)
+		std::cout << v[i] << " ";
+	std::cout << std::endl;
+
+
 }
