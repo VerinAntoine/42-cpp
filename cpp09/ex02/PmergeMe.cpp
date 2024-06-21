@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 
+#include <cmath>
 #include <utility>
 #include <iostream>
 
@@ -20,25 +21,20 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 void PmergeMe::sort(std::vector<int> v)
 {
-	bool isOdd = v.size() % 2;
-	size_t mid = v.size() / 2;
+	size_t size = v.size();
+	bool isOdd = size % 2;
 
 	std::vector<std::pair<int, int> > pairs;
-	for (size_t i = 0; i < mid; i++)
-		pairs.push_back(std::pair<int, int>(v[i], v[i + mid]));
-
-	std::cout << "isodd " << isOdd << std::endl;
 	std::pair<int, int> odd;
-	if (isOdd)
+	for (size_t i = 0; i < v.size(); i += 2)
 	{
-		odd.first = v[v.size() - 1];
-		odd.second = -1;
+		if (isOdd && v.size() == i + 1)
+			odd = (std::pair<int, int>(v[i], -1));
+		else
+			pairs.push_back(std::pair<int, int>(v[i], v[i + 1]));
 	}
-	v.clear();
 
-	//!
-	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
+	v.clear();
 
 	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin()
 		; it != pairs.end(); it++)
@@ -47,34 +43,28 @@ void PmergeMe::sort(std::vector<int> v)
 			std::swap(it->first, it->second);
 	}
 
-	//!
-	std::cout << std::endl;
-	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
-
 	merge(pairs);
 
-	//!
-	std::cout << std::endl;
+	v.push_back(pairs[0].first);
 	for (size_t i = 0; i < pairs.size(); i++)
-		std::cout << pairs[i].first << " " << pairs[i].second << std::endl;
-
-	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin()
-		; it != pairs.end(); it++)
-	{
-		if (it == pairs.begin())
-			v.push_back(it->first);
-		v.push_back(it->second);
-	}
-	
+		v.push_back(pairs[i].second);
+	pairs.erase(pairs.begin());
 	if (isOdd)
 		pairs.push_back(odd);
+	
+	std::vector<size_t> groupSizes = calculateGroupSizes<std::vector<size_t> >(pairs.size());
 
-	//!
-	std::cout << std::endl;
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
-	std::cout << std::endl;
-
-
+	size_t iterOdd = 0;
+	for (size_t i = 0; i < groupSizes.size(); i++)
+	{
+		for (size_t j = groupSizes[i]; j > 0; j--)
+		{
+			int x = pairs[iterOdd + j - 1].first;
+			std::vector<int>::iterator it = v.begin();
+			while (it < v.end() - 1 && x > *it)
+				it++;
+			v.insert(it, x);
+		}	
+		iterOdd += groupSizes[i];
+	}
 }

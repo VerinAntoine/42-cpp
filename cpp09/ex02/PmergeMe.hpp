@@ -4,6 +4,8 @@
 # include <string>
 # include <vector>
 
+#include <cstdlib>
+
 class PmergeMe
 {
 
@@ -30,7 +32,7 @@ void join(T &pairs, T &a, T &b)
 	pairs.clear();
 
 	size_t i = 0, j = 0;
-	while (i < a.size() && j < a.size())
+	while (i < a.size() && j < b.size())
 	{
 		if (a[i].second <= b[j].second)
 			pairs.push_back(a[i++]);
@@ -55,6 +57,56 @@ void merge(T &pairs)
 		merge(b);
 		join(pairs, a, b);
 	}
+}
+
+template<typename T>
+size_t binarySearch(const T &pairs, int n)
+{
+	size_t start = 0;
+	size_t end = pairs.size() - 1;
+	while (start < end)
+	{
+		size_t middle = start + (end - start) / 2;
+		if (pairs[middle] > n)
+			end = middle;
+		else
+			start = middle + 1;
+	}
+	return start;
+}
+
+template<typename T>
+void parse(T &array, char *str[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		int n = std::atoi(str[i]);
+		if (n < 0 || std::string(str[i]).size() > 15)
+			throw PmergeMe::InvalidInputException();
+		array.push_back(n);
+	}
+}
+
+template<typename T>
+T calculateGroupSizes(size_t totalElements) {
+    T sizes;
+    size_t i = 0, currentSize = 2, sum = 0;
+
+    while (sum + currentSize <= totalElements) {
+        sum += currentSize;
+        sizes.push_back(currentSize);
+        i++;
+        if (i < 2)
+            currentSize = sizes[i - 1];
+        else
+            currentSize = sizes[i - 2] * 2 + sizes[i - 1];
+    }
+
+    if (sum < totalElements) {
+        sizes.push_back(totalElements - sum);
+    }
+
+    return sizes;
 }
 
 #endif
