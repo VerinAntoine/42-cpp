@@ -11,9 +11,6 @@
 class PmergeMe
 {
 
-private:
-	int parse(const std::string &param);
-
 public:
 	PmergeMe();
 	PmergeMe(const PmergeMe &other);
@@ -60,22 +57,6 @@ void merge(T &pairs)
 		merge(b);
 		join(pairs, a, b);
 	}
-}
-
-template<typename T>
-size_t binarySearch(const T &pairs, int n)
-{
-	size_t start = 0;
-	size_t end = pairs.size() - 1;
-	while (start < end)
-	{
-		size_t middle = start + (end - start) / 2;
-		if (pairs[middle] > n)
-			end = middle;
-		else
-			start = middle + 1;
-	}
-	return start;
 }
 
 template<typename T>
